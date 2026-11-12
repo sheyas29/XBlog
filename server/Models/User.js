@@ -11,7 +11,7 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-    password: { type: String, required: true, select: false },
+    password: { type: String, default: '', select: false },
     avatar: { type: String },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
   },

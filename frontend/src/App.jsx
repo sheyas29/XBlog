@@ -175,6 +175,36 @@ function App() {
     }
   };
 
+  const handleGoogleAuth = async () => {
+    const googleUser = {
+      name: form.name || 'Google User',
+      email: form.email || `google-user-${Date.now()}@gmail.com`,
+      avatar: 'https://picsum.photos/seed/picsum/200/300',
+    };
+
+    try {
+      const response = await fetch(`${API_URL}/api/auth/google-login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(googleUser),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || 'Google login failed');
+      }
+
+      setToken(data.token);
+      setUser(data.user);
+      setForm(initialForm);
+      setView('home');
+    } catch (error) {
+      alert(error.message || 'Google login failed');
+    }
+  };
+
   const handleCreatePost = async (event) => {
     event.preventDefault();
     if (!token) return;
@@ -269,7 +299,11 @@ function App() {
       </form>
 
       <div className="social-row">
-        <button type="button" className="secondary-button">
+        <button
+          type="button"
+          className="secondary-button"
+          onClick={handleGoogleAuth}
+        >
           {authMode === 'signup' ? 'Sign Up with Google' : 'Login with Google'}
         </button>
       </div>
