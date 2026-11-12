@@ -6,7 +6,7 @@ module.exports = defineConfig({
     baseUrl: 'http://localhost:3000',
     setupNodeEvents(on, config) {
       config.env = config.env || {};
-      config.env.frontendUrl = 'http://localhost:3000';
+      config.env.clientUrl = 'http://localhost:3000';
       config.env.backendUrl = 'http://localhost:5000';
 
       return config;
