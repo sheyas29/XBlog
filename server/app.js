@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const router = express.Router();
-const authRouter = require('./routes/authRoutes');
-const postRouter = require('./routes/postRoutes');
-const userRouter = require('./routes/userRoutes');
-const commentRouter = require('./routes/commentRoute');
+const authRouter = require('./Routes/authRoutes');
+const postRouter = require('./Routes/postRoutes');
+const userRouter = require('./Routes/userRoutes');
+const commentRouter = require('./Routes/commentRoute');
 app.use(cors());
 app.use(express.json());
 app.get('/', (req, res) => {
